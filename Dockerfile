@@ -1,7 +1,13 @@
-FROM n8nio/n8n:latest
+FROM node:18-alpine
 
-# Expone el puerto 5678 (por defecto de n8n)
+# Instala n8n globalmente
+RUN npm install -g n8n
+
+# Crea el directorio de configuración
+RUN mkdir -p /home/node/.n8n
+
+# Expone el puerto de n8n
 EXPOSE 5678
 
 # Inicia n8n
-CMD ["npm", "start"]
+CMD ["n8n", "start"]
